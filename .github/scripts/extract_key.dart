@@ -25,7 +25,7 @@ List<List<int>> main(List<String> args) {
       .map((e) => e!)
       .toList()
       .getChunkedList();
-
+  print(indexes);
   return indexes;
 }
 
