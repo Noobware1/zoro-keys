@@ -25,9 +25,9 @@ List<List<int>> main(List<String> args) {
       .map((e) => e!)
       .toList()
       .getChunkedList();
- 
-  File('key').writeAsStringSync(jsonEncode(indexes))
- 
+
+  File('key').writeAsStringSync(jsonEncode(indexes));
+
   return indexes;
 }
 
