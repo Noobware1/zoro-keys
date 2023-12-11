@@ -35,7 +35,7 @@ jobs:
         uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
 
       - name: Download the obfuscated script
-        run: curl ${{ matrix.script_url }} --output script.js
+        run: curl ${{ matrix.script_url }} --output .github/scripts/script.js
 
       - name: Run Dart script to extract key
         run: |
