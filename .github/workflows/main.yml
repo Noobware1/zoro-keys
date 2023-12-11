@@ -31,6 +31,9 @@ jobs:
         with:
           ref: master
 
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+
       - name: Download the obfuscated script
         run: curl ${{ matrix.script_url }} --output script.js
 
