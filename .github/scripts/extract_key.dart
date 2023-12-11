@@ -13,10 +13,19 @@ List<List<int>> main(List<String> args) {
       .allMatches(switchCaseString)
       .map((e) {
         final varRegex = RegExp(',${e.group(1)!}=(0x[0-9a-fA-F]+)');
-        return varRegex.allMatches(script).last.group(1)!.toInt();
+        
+        final matches = varRegex.allMatches(script)
+        if(matches.isEmpty) {
+          return null;
+        }
+      return matches  .last.group(1)!.toInt();
       })
       .toList()
+      .where((e) => e != null)
+      .map((e) => e!)
+      .toList()
       .getChunkedList();
+ 
   return indexes;
 }
 

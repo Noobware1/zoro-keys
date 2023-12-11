@@ -42,7 +42,8 @@ jobs:
           cd .github/scripts  
           ls -la
           output=$(dart run extract_key.dart script.js)
-          echo "::set-output name=output::$output"
+          echo "Dart Script Output: $output"
+          echo "DART_OUTPUT=$output" >> $GITHUB_ENV
 
       - name: Checkout ${{ matrix.branch }} branch
         uses: actions/checkout@v4
@@ -54,9 +55,9 @@ jobs:
         run: |
           cd key_repo
           ls -la
-          echo "Old -> $(cat key) || New -> ${{ steps.dart.outputs.output }}"
-          if [[ "$(cat key)" != "${{ steps.dart.outputs.output }}" ]]; then
-            cp "${{ steps.dart.outputs.output }}" .
+          echo "Old -> $(cat key) || New -> $DART_OUTPUT"
+          if [[ "$(cat key)" != "$DART_OUTPUT" ]]; then
+            cp "$DART_OUTPUT" .
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             git add key
