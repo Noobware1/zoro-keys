@@ -3,7 +3,7 @@ name: Update keys
 on:
   schedule:
     # Run every 10 minutes
-    - cron: '*/10 * * * *'
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main
 
       - name: Download the obfuscated script
         run: curl ${{ matrix.script_url }} --output script.js
