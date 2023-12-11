@@ -8,14 +8,15 @@ List<List<int>> main(List<String> args) {
 
   final switchCaseString = script.substring(start, end);
 
-  final regex = RegExp(r'=(\w)');
+  final regex = RegExp(r'=(\w+)');
 
   final indexes = regex
       .allMatches(switchCaseString)
       .map((e) {
-        final varRegex = RegExp(',${e.group(1)!}=(0x[0-9a-fA-F]+)');
+        final varRegex = RegExp(',${e.group(1)!}=((?:0x)?([0-9a-fA-F]+))');
 
         final matches = varRegex.allMatches(script);
+        print(matches.map((e) => e.group(0)));
         if (matches.isEmpty) {
           return null;
         }
