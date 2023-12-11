@@ -35,7 +35,9 @@ jobs:
         run: curl ${{ matrix.script_url }} --output script.js
 
       - name: Run Dart script to extract key
-        run: dart run .github/scripts/extract_key.dart script.js
+        run: |
+          cd .github/scripts  
+          dart run extract_key.dart script.js
 
       - name: Checkout ${{ matrix.branch }} branch
         uses: actions/checkout@v4
