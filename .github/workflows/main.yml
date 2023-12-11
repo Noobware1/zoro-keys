@@ -3,7 +3,7 @@ name: Update keys
 on:
   schedule:
     # Run every 10 minutes
-    - cron:  '*/100 * * * *'
+    - cron: '*/10 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -31,23 +31,11 @@ jobs:
         with:
           ref: master
 
-      - name: Setup NodeJS environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install synchrony-cli
-        run: npm install -g deobfuscator
-
       - name: Download the obfuscated script
         run: curl ${{ matrix.script_url }} --output script.js
 
-      - name: Deobfuscate script
-        continue-on-error: true
-        run: synchrony script.js
-
-      - name: Extract key
-        run: python3 .github/scripts/extractKey.py script.cleaned.js key
+      - name: Run Dart script to extract key
+        run: dart .github/scripts/extract_key.dart script.js
 
       - name: Checkout ${{ matrix.branch }} branch
         uses: actions/checkout@v4
