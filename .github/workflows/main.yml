@@ -55,9 +55,9 @@ jobs:
         run: |
           cd key_repo
           ls -la
-          echo "Old -> $(cat key) || New -> $DART_OUTPUT"
-          if [[ "$(cat key)" != "$DART_OUTPUT" ]]; then
-            cp "$DART_OUTPUT" .
+          echo "Old -> $(cat key) || New -> $(cat ../.github/scripts/key)"
+          if [[ "$(cat key)" != "$(cat ../.github/scripts/key)" ]]; then
+            cp ../.github/scripts/key .
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             git add key
