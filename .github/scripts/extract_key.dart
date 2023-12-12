@@ -16,7 +16,6 @@ List<List<int>> main(List<String> args) {
         final varRegex = RegExp(',${e.group(1)!}=((?:0x)?([0-9a-fA-F]+))');
 
         final matches = varRegex.allMatches(script);
-        print(matches.map((e) => e.group(0)));
         if (matches.isEmpty) {
           return null;
         }
