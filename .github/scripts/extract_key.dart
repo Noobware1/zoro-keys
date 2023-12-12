@@ -28,7 +28,7 @@ List<List<int>> main(List<String> args) {
       .getChunkedList();
 
   File('key').writeAsStringSync(jsonEncode(indexes));
-
+  print(indexes);
   return indexes;
 }
 
