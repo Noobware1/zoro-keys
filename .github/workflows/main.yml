@@ -2,8 +2,8 @@ name: Update keys
 
 on:
   schedule:
-    # Run every 2 minutes
-    - cron: "*/2 * * * *"
+    # Run every 5 minutes
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
